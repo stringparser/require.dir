@@ -64,13 +64,13 @@ function requireDir([string dirname, object options])
 _arguments_
 - `dirname`, type String optional, directory to inspect and require
 - `options`, type Object optional, properties are:
-   - `dot`, type boolean, whether to include dot files
-   - `regexp`, type RegExp, to test against each `pathname`
+   - `dot`, must be `truthy` to include dot files
+   - `regexp`, must be `regexp` to test against each `pathname`
    - `recursive`, must be `truthy` to require subfolders
 
 _when_
 - `options.dot` is `true` dotfiles/folders are excluded
-- `options.regexp` is `false` the `pathname` is skipped
+- `options.regexp` test against a `pathname` is `false` it's skipped
 
 _defaults_
 - `dirname` to the caller's directory
