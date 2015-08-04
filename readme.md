@@ -109,7 +109,7 @@ require.dir
 
 [npm]: https://npmjs.org/package/require.dir
 [travis]: https://travis-ci.org/stringparser/require.dir/builds
-[travis-yml]: ./travis.yml
+[travis-yml]: ./.travis.yml
 
 [badge-build]: http://img.shields.io/travis/stringparser/require.dir/master.svg?style=flat-square
 [require-dir]: https://npmjs.org/require-dir
