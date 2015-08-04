@@ -1,0 +1,30 @@
+{
+  "name": "require.dir",
+  "main": "index.js",
+  "version": "0.1.0",
+  "scripts": {
+    "lint": "jshint lib index.js",
+    "test": "npm run lint && mocha test/index.js"
+  },
+  "author": "Javier Carrillo Milla (github.com/stringparser)",
+  "license": "MIT",
+  "keywords": [
+    "dir",
+    "module",
+    "require",
+    "directory",
+    "recursive"
+  ],
+  "repository": "https://github.com/stringparser/require.dir.git",
+  "description": "require folders that may have modules inside",
+  "dependencies": {
+    "camelcase": "^1.2.1",
+    "utils-type": "^0.13.0",
+    "v8-callsites": "^1.1.0"
+  },
+  "devDependencies": {
+    "jshint": "*",
+    "mocha": "*",
+    "should": "*"
+  }
+}
