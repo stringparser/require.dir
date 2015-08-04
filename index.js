@@ -6,39 +6,40 @@ var util = require('./lib/util');
 
 exports = module.exports = requireDir;
 
-function requireDir(dirname, opt){
-  opt = util.type(opt || dirname).plainObject || {};
-  var caller = util.callsites(requireDir)[0].getFileName();
-  opt.dirname = path.resolve(
+function requireDir(dir, opt){
+  var caller = util.callsites(requireDir, 1)[0].getFileName();
+  var dirname = path.resolve(
     path.dirname(caller),
-    util.type(opt.dirname || dirname).string || '.'
+    util.type(dir).string || '.'
   );
 
+  opt = util.type(opt || dir).plainObject || {};
+  opt.regexp = util.type(opt.regexp).regexp || /^[.]/;
+
   try {
-    var ls = fs.readdirSync(opt.dirname);
+    var ls = fs.readdirSync(dirname);
   } catch(err){ throw err; }
 
-  opt.exports = {};
-
+  var hash = {};
   ls.forEach(function(file){
-    if(/^\./.test(file) && !opt.dot){ return; }
-    var pathname = path.join(opt.dirname, file);
+    if(opt.regexp.test(file)){ return; }
+    var pathname = path.join(dirname, file);
     if(pathname === caller){ return; }
 
-    var ext = path.extname(pathname);
-    var key = util.camelCase(path.basename(pathname, ext));
-    if(opt.exports[key]){ key += ext.slice(1); }
+    var ext = path.extname(file);
+    var key = util.camelCase(path.basename(file, ext));
+    if(hash[key]){ key += ext.slice(1); }
 
+    // is it a file/module?
     try {
-      // is it a file/module?
-      opt.exports[key] = require(pathname);
+      hash[key] = require(pathname);
     } catch(err){
       // then is a folder
       if(opt.recursive){
-        opt.exports[key] = requireDir(pathname, {recursive: true});
+        hash[key] = requireDir(pathname, opt);
       }
     }
   });
 
-  return opt.exports;
+  return hash;
 }
