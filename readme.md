@@ -1,15 +1,10 @@
 # require.dir [![NPM version][badge-version]][npm][![downloads][badge-downloads]][npm]
 
+[![build][badge-build]][travis][![engines][badge-engines]][travis-yml]
+
 [documentation](#documentation) -
 [install](#install) -
-[todo](#todo) -
 [why](#why)
-
-[![build][badge-build]][travis]
-
-Require folders that may have modules inside.
-
-## example
 
 Say we have the following tree
 
@@ -114,7 +109,11 @@ require.dir
 
 [npm]: https://npmjs.org/package/require.dir
 [travis]: https://travis-ci.org/stringparser/require.dir/builds
+[travis-yml]: ./travis.yml
+
 [badge-build]: http://img.shields.io/travis/stringparser/require.dir/master.svg?style=flat-square
 [require-dir]: https://npmjs.org/require-dir
+
+[badge-engines]: https://img.shields.io/badge/engines-node%20%3E%3D%20v0.10%20%7C%7C%20iojs-blue.svg?style=flat-square
 [badge-version]: http://img.shields.io/npm/v/require.dir.svg?style=flat-square
 [badge-downloads]: http://img.shields.io/npm/dm/require.dir.svg?style=flat-square
