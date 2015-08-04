@@ -14,7 +14,7 @@ function requireDir(dir, opt){
   );
 
   opt = util.type(opt || dir).plainObject || {};
-  opt.regexp = util.type(opt.regexp).regexp || /^[.]/;
+  opt.regexp = util.type(opt.regexp).regexp;
 
   try {
     var ls = fs.readdirSync(dirname);
@@ -22,7 +22,8 @@ function requireDir(dir, opt){
 
   var hash = {};
   ls.forEach(function(file){
-    if(opt.regexp.test(file)){ return; }
+    if(/^[.]/.test(file) && !opt.dot){ return; }
+    if(opt.regexp && !opt.regexp.test(file)){ return; }
     var pathname = path.join(dirname, file);
     if(pathname === caller){ return; }
 
