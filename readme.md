@@ -62,18 +62,22 @@ function requireDir([string dirname, object options])
 ```
 
 _arguments_
-- `dirname`, type String optional, directory to inspect and require
-- `options`, type Object optional, properties are:
-   - `dot`, must be `truthy` to include dot files
-   - `regexp`, must be `regexp` to test against each `pathname`
-   - `recursive`, must be `truthy` to require subfolders
+- `dirname`, type string optional, directory to inspect and require
+- `options`, type object optional, properties are:
+   - `dot` whether to include `pathnames` starting with a `.dot`
+   - `test`, type regexp, test each `pathname` found, that is not `.dot`
+   - `recursive`, whether continue recursively on next folders
 
-_when_
-- `options.dot` is `true` dotfiles/folders are excluded
-- `options.regexp` test against a `pathname` is `false` it's skipped
+  _defaults_
+    - `dirname` to the caller's directory
 
-_defaults_
-- `dirname` to the caller's directory
+  _when_
+    - `options.dot` is `falsy` dotfiles/folders are excluded
+    - `options.test` is `false` that `pathname` is skipped
+
+    ```js
+      require('./folder', {test: /\.js$/}) // js files
+    ```
 
 _throws_
 - When the first `dirname` does not exists
