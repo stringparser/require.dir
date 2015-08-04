@@ -1,7 +1,7 @@
 {
   "name": "require.dir",
   "main": "index.js",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "scripts": {
     "lint": "jshint lib index.js",
     "test": "npm run lint && mocha test/index.js"
