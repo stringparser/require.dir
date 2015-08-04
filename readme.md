@@ -50,7 +50,7 @@ Recurse folders if passed as an option.
 
 The caller's path is always excluded.
 
-> Note that modules are not recursed.
+> Note that modules are not recursed. <br/>
 > Only folders that either do not have a package.json or an index file
 
 ### spec
@@ -62,18 +62,24 @@ function requireDir([string dirname, object options])
 ```
 
 _arguments_
-- `dirname`, type string optional, directory to inspect and require
-- `options`, type object optional, properties are:
-   - `recursive`, type boolean optional, true if the function should recurse
+- `dirname`, type String optional, directory to inspect and require
+- `options`, type Object optional, properties are:
+   - `dot`, type boolean, whether to include dot files
+   - `regexp`, type RegExp, to test against each `pathname`
+   - `recursive`, must be `truthy` to require subfolders
 
-_returns_
-- object with all the exports
-
-_throws_
-- When `dirname` does not exists
+_when_
+- `options.dot` is `true` dotfiles/folders are excluded
+- `options.regexp` is `false` the `pathname` is skipped
 
 _defaults_
 - `dirname` to the caller's directory
+
+_throws_
+- When the first `dirname` does not exists
+
+_returns_
+- object with all the exports
 
 ## why
 
