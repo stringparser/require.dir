@@ -2,14 +2,14 @@
 
 var requireDir = require('../');
 
-it('should exclude dot folders by default', function(){
-  requireDir('./folder/regexp').should.be.eql({
+it('{test: /\.js$/} returns no .dotfile.js', function(){
+  requireDir('./folder/regexp', {test: /\.js$/}).should.be.eql({
     'index': 'regexp'
   });
 });
 
-it('{regexp: /\.js$/, dot: true} also returns .dotfile.js', function(){
-  requireDir('./folder/regexp', {regexp: /\.js$/, dot: true}).should.be.eql({
+it('{test: /\.js$/, dot: true} also gives .dotfile.js', function(){
+  requireDir('./folder/regexp', {test: /\.js$/, dot: true}).should.be.eql({
     'index': 'regexp',
     'dotfile': ''
   });
