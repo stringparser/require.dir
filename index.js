@@ -14,16 +14,18 @@ function requireDir(dir, opt){
   );
 
   opt = util.type(opt || dir).plainObject || {};
-  opt.regexp = util.type(opt.regexp).regexp;
+  var re = util.type(opt.test).regexp;
 
   try {
     var ls = fs.readdirSync(dirname);
   } catch(err){ throw err; }
 
   var hash = {};
+
   ls.forEach(function(file){
     if(/^[.]/.test(file) && !opt.dot){ return; }
-    if(opt.regexp && !opt.regexp.test(file)){ return; }
+    if(re && !re.test(file)){ return; }
+
     var pathname = path.join(dirname, file);
     if(pathname === caller){ return; }
 
